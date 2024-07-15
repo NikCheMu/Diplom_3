@@ -40,6 +40,7 @@ public class RegisterPageTest {
         validEmail = Utils.getRandomEmail();
         validPassword = Utils.getRandomPassword(8);
         invalidPassword = Utils.getRandomPassword(5);
+        Utils.registerUser(validEmail,validPassword,validName);
     }
 
     @Test

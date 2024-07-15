@@ -23,6 +23,8 @@ public class MainPageTest {
 
     private String validPassword;
 
+    private String validName;
+
 
     @Before
     @Step("Prepare data and driver")
@@ -30,8 +32,10 @@ public class MainPageTest {
         driver = Browser.getDriver(Browser.BrowserName.CHROME);
         mainPage = new MainPage(driver);
         loginPage = new LoginPage(driver);
+        validName = Utils.getRandomName();
         validEmail = Utils.getRandomEmail();
         validPassword = Utils.getRandomPassword(8);
+        Utils.registerUser(validEmail,validPassword,validName);
     }
 
 
