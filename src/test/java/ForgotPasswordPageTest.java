@@ -10,7 +10,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import pom.ForgotPasswordPage;
 import pom.LoginPage;
 import pom.MainPage;
-import pom.RegisterPage;
 import utils.Utils;
 
 public class ForgotPasswordPageTest {

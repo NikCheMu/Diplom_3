@@ -17,10 +17,6 @@ public class LoginPage extends BasePage{
 
     private final By logInForm = By.className("Auth_login__3hAey");
 
-    private final By registerRef = By.linkText("Зарегистрироваться");
-
-    private final By forgotPasswordRef = By.linkText("Восстановить пароль");
-
     private final By inputFieldByName = By.name("name");
 
     private final By passwordField =  By.name("Пароль");

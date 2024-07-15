@@ -21,13 +21,9 @@ public class MainPage extends BasePage{
 
     private final By bunSection = By.xpath(".//h2[contains(@class, 'text text_type_main-medium mb-6 mt-10') and text() = 'Булки']");
 
-    private final By bunCard = By.xpath(".//p[contains(@class, 'BurgerIngredient_ingredient__text__yp3dH') and text()[contains(.,'булка')]]");
-
     private final By sauceMenuSelect = By.xpath(".//span[contains(@class, 'text text_type_main-default') and text() = 'Соусы']");
 
     private final By sauceSection = By.xpath(".//h2[contains(@class, 'text text_type_main-medium mb-6 mt-10') and text() = 'Соусы']");
-
-    private final By souceCard = By.xpath(".//p[contains(@class, 'BurgerIngredient_ingredient__text__yp3dH') and text()[contains(.,'Соус')]]");
 
     private final By fillingMenuSelect = By.xpath(".//span[contains(@class, 'text text_type_main-default') and text() = 'Начинки']");
 

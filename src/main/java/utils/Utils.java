@@ -3,7 +3,6 @@ package utils;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import org.openqa.selenium.Point;
 import utils.apiModels.CreateUserModel;
 import utils.apiModels.LogInUserResponse;
 import utils.apiModels.LoginUserModel;
