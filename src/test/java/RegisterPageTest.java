@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import pom.LoginPage;
 import pom.MainPage;
 import pom.RegisterPage;
+import utils.Browser;
 import utils.Utils;
 
 public class RegisterPageTest {
@@ -31,9 +32,7 @@ public class RegisterPageTest {
     @Before
     @Step("Prepare data and driver")
     public void setUp(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
+        driver = Browser.getDriver(Browser.BrowserName.CHROME);
         mainPage = new MainPage(driver);
         loginPage = new LoginPage(driver);
         registerPage = new RegisterPage(driver);

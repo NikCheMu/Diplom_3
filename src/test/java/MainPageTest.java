@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import pom.*;
+import utils.Browser;
 import utils.Utils;
 
 
@@ -26,9 +27,7 @@ public class MainPageTest {
     @Before
     @Step("Prepare data and driver")
     public void setUp(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
+        driver = Browser.getDriver(Browser.BrowserName.CHROME);
         mainPage = new MainPage(driver);
         loginPage = new LoginPage(driver);
         validEmail = Utils.getRandomEmail();
