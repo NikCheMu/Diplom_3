@@ -3,6 +3,10 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 
 public class BasePage {
@@ -15,6 +19,16 @@ public class BasePage {
     public WebDriver getDriver() {
         return driver;
     }
+
+    private By animationOverlay = By.xpath(".//div[@class = 'Modal_modal_overlay__x2ZCr']");
+
+    @Step("Ждем пока завершится анимация загрузки")
+    public BasePage waitTillAnimationOverlayInvisible(){
+        new WebDriverWait(getDriver(), Duration.ofSeconds(3)).until(ExpectedConditions.invisibilityOf(getDriver().findElements(animationOverlay).get(0)));
+        new WebDriverWait(getDriver(), Duration.ofSeconds(3)).until(ExpectedConditions.invisibilityOf(getDriver().findElements(animationOverlay).get(1)));
+        return this;
+    }
+
 
 
     @Step("Получаем координаты элемента")

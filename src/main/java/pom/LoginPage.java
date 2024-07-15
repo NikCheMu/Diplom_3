@@ -45,6 +45,8 @@ public class LoginPage extends BasePage{
 
     @Step("Нажимаем кнопку Войти")
     public LoginPage logInButtonClick(){
+        waitTillAnimationOverlayInvisible();
+        new WebDriverWait(getDriver(),Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(logInButton)));
         getDriver().findElement(logInButton).click();
         return this;
     }

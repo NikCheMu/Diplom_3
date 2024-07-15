@@ -12,6 +12,8 @@ import pom.MainPage;
 import utils.Browser;
 import utils.Utils;
 
+import java.util.concurrent.TimeUnit;
+
 public class LoginPageTest {
     private WebDriver driver;
     private MainPage mainPage;
@@ -27,7 +29,8 @@ public class LoginPageTest {
     @Before
     @Step("Prepare data and driver")
     public void setUp(){
-        driver = Browser.getDriver(Browser.BrowserName.CHROME);
+        driver = Browser.getDriver();
+        driver.manage().window().maximize();
         mainPage = new MainPage(driver);
         loginPage = new LoginPage(driver);
         validName = Utils.getRandomName();

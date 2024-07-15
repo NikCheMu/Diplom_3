@@ -30,6 +30,8 @@ public class ForgotPasswordPage extends BasePage{
 
     @Step("Нажимаем на кнопку Войти")
     public ForgotPasswordPage logInRefClick(){
+        waitTillAnimationOverlayInvisible();
+        new WebDriverWait(getDriver(),Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(logInRef)));
         getDriver().findElement(logInRef).click();
         return this;
     }

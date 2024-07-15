@@ -6,11 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import pom.*;
 import utils.Browser;
 import utils.Utils;
+
+import java.util.concurrent.TimeUnit;
 
 
 public class MainPageTest {
@@ -29,7 +29,8 @@ public class MainPageTest {
     @Before
     @Step("Prepare data and driver")
     public void setUp(){
-        driver = Browser.getDriver(Browser.BrowserName.CHROME);
+        driver = Browser.getDriver();
+        driver.manage().window().maximize();
         mainPage = new MainPage(driver);
         loginPage = new LoginPage(driver);
         validName = Utils.getRandomName();

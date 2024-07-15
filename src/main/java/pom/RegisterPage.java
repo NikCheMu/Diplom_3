@@ -50,12 +50,16 @@ public class RegisterPage extends BasePage{
 
     @Step("Нажимем Зарегистрироваться")
     public RegisterPage submitButtonClick(){
+        waitTillAnimationOverlayInvisible();
+        new WebDriverWait(getDriver(),Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(submitButton)));
         getDriver().findElement(submitButton).click();
         return this;
     }
 
     @Step("Переходим на экран авторизации")
     public RegisterPage logInRefButtonClick(){
+        waitTillAnimationOverlayInvisible();
+        new WebDriverWait(getDriver(),Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(logInRefButton)));
         getDriver().findElement(logInRefButton).click();
         return this;
     }

@@ -14,6 +14,8 @@ import pom.MainPage;
 import utils.Browser;
 import utils.Utils;
 
+import java.util.concurrent.TimeUnit;
+
 public class AccountPageTest {
     private WebDriver driver;
     private MainPage mainPage;
@@ -34,7 +36,8 @@ public class AccountPageTest {
     @Before
     @Step("Prepare data and driver")
     public void setUp(){
-        driver = Browser.getDriver(Browser.BrowserName.CHROME);
+        driver = Browser.getDriver();
+        driver.manage().window().maximize();
         mainPage = new MainPage(driver);
         loginPage = new LoginPage(driver);
         header = new Header(driver);

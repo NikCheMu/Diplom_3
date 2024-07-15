@@ -51,6 +51,8 @@ public class MainPage extends BasePage{
 
     @Step("Нажимаем Войти в аккаунт")
     public MainPage logInButtonClick(){
+        waitTillAnimationOverlayInvisible();
+        new WebDriverWait(getDriver(), Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(dynamicButton)));
         getDriver().findElement(dynamicButton).click();
         return this;
     }
