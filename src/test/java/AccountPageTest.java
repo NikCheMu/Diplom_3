@@ -4,20 +4,13 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import pom.AccountPage;
 import pom.Header;
 import pom.LoginPage;
 import pom.MainPage;
-import utils.Browser;
 import utils.Utils;
 
-import java.util.concurrent.TimeUnit;
-
-public class AccountPageTest {
-    private WebDriver driver;
+public class AccountPageTest extends BaseTest{
     private MainPage mainPage;
 
     private LoginPage loginPage;
@@ -34,38 +27,46 @@ public class AccountPageTest {
 
 
     @Before
-    @Step("Prepare data and driver")
-    public void setUp(){
-        driver = Browser.getDriver();
-        driver.manage().window().maximize();
-        mainPage = new MainPage(driver);
-        loginPage = new LoginPage(driver);
-        header = new Header(driver);
-        accountPage = new AccountPage(driver);
+    @Step("Prepare data")
+    public void setUp() {
+        mainPage = new MainPage(getDriver());
+
+        loginPage = new LoginPage(getDriver());
+
+        header = new Header(getDriver());
+
+        accountPage = new AccountPage(getDriver());
+
         validName = Utils.getRandomName();
+
         validEmail = Utils.getRandomEmail();
+
         validPassword = Utils.getRandomPassword(8);
-        Utils.registerUser(validEmail,validPassword,validName);
+
+        Utils.registerUser(validEmail, validPassword, validName);
     }
 
     @Test
     @DisplayName("Проверяем что после нажатия на Выход отображается форма авторизации")
-    public void logInPageIsShownWhenUserClickLogOutButton(){
+    public void logInPageIsShownWhenUserClickLogOutButton() {
         mainPage.openMainPage()
                 .logInButtonClick();
+
         loginPage.fillEmail(validEmail)
                 .fillPassword(validPassword)
                 .logInButtonClick();
+
         header.accountRefButtonClick();
+
         accountPage.waitAccountDataFormDisplayed()
-                    .logOutButtonClick();
+                .logOutButtonClick();
+
         Assert.assertTrue(loginPage.isLogInFormDisplayed());
     }
 
     @After
-    @Step("Quit driver")
+    @Step("Clean up")
     public void teardown() {
-        driver.quit();
-        Utils.deleteUser(validEmail,validPassword);
+        Utils.deleteUser(validEmail, validPassword);
     }
 }

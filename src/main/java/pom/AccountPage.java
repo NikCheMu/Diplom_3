@@ -9,30 +9,29 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class AccountPage extends BasePage{
+public class AccountPage extends BasePage {
+    private final By accountDataForm = By.className("Profile_profile__3dzvr");
+    private final By logOutButton = By.xpath(".//button[contains(@class,'Account_button__14Yp3')]");
+
     public AccountPage(WebDriver driver) {
         super(driver);
     }
 
-    private final By accountDataForm = By.className("Profile_profile__3dzvr");
-
-    private final By logOutButton = By.xpath(".//button[contains(@class,'Account_button__14Yp3')]");
-
     @Step("Проверяем что открылась страница Профиль")
-    public boolean isAccountDataFormDisplayed(){
+    public boolean isAccountDataFormDisplayed() {
         getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         return getDriver().findElement(accountDataForm).isDisplayed();
     }
 
     @Step("Ждем пока откроется страница Профиль")
-    public AccountPage waitAccountDataFormDisplayed(){
+    public AccountPage waitAccountDataFormDisplayed() {
         getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         getDriver().findElement(accountDataForm);
         return this;
     }
 
     @Step("Нажимаем кнопку Выход")
-    public AccountPage logOutButtonClick(){
+    public AccountPage logOutButtonClick() {
         waitTillAnimationOverlayInvisible();
         new WebDriverWait(getDriver(), Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(logOutButton)));
         getDriver().findElement(logOutButton).click();

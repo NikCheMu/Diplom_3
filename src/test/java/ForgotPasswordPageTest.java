@@ -4,20 +4,13 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import pom.ForgotPasswordPage;
 import pom.LoginPage;
 import pom.MainPage;
-import utils.Browser;
 import utils.Utils;
 
-import java.util.concurrent.TimeUnit;
+public class ForgotPasswordPageTest extends BaseTest {
 
-public class ForgotPasswordPageTest {
-
-    private WebDriver driver;
     private MainPage mainPage;
 
     private LoginPage loginPage;
@@ -31,35 +24,42 @@ public class ForgotPasswordPageTest {
     private String validPassword;
 
     @Before
-    @Step("Prepare data and driver")
-    public void setUp(){
-        driver = Browser.getDriver();
-        driver.manage().window().maximize();
-        mainPage = new MainPage(driver);
-        loginPage = new LoginPage(driver);
-        forgotPasswordPage = new ForgotPasswordPage(driver);
+    @Step("Prepare data")
+    public void setUp() {
+
+        mainPage = new MainPage(getDriver());
+
+        loginPage = new LoginPage(getDriver());
+
+        forgotPasswordPage = new ForgotPasswordPage(getDriver());
+
         validName = Utils.getRandomName();
+
         validEmail = Utils.getRandomEmail();
+
         validPassword = Utils.getRandomPassword(8);
-        Utils.registerUser(validEmail,validPassword,validName);
+
+        Utils.registerUser(validEmail, validPassword, validName);
     }
 
     @Test
     @DisplayName("Проверяем что пользователь может авторизоваться перейдя на экран авторизации по нажатию на Войти")
-    public void successfullAuthorizationDrivesUsToMainPageViaLoginRefButton(){
+    public void successfullAuthorizationDrivesUsToMainPageViaLoginRefButton() {
         forgotPasswordPage.openForgotPasswordPage()
-                            .logInRefClick();
+                .logInRefClick();
+
         loginPage.fillEmail(validEmail)
                 .fillPassword(validPassword)
                 .logInButtonClick();
+
         Assert.assertTrue(mainPage.isMainPageDisplayed());
-        Assert.assertEquals("Оформить заказ",mainPage.getDynamicButtonName());
+
+        Assert.assertEquals("Оформить заказ", mainPage.getDynamicButtonName());
     }
 
     @After
-    @Step("Quit driver")
+    @Step("Clean up")
     public void teardown() {
-        driver.quit();
-        Utils.deleteUser(validEmail,validPassword);
+        Utils.deleteUser(validEmail, validPassword);
     }
 }

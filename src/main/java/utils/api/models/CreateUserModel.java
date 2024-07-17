@@ -1,4 +1,4 @@
-package utils.apiModels;
+package utils.api.models;
 
 public class CreateUserModel {
     private String email;
@@ -38,6 +38,6 @@ public class CreateUserModel {
 
     public CreateUserModel setName(String name) {
         this.name = name;
-        return  this;
+        return this;
     }
 }

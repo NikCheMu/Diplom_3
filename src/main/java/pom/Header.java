@@ -8,20 +8,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Header extends BasePage{
+public class Header extends BasePage {
+
+    private final By accountRefButton = By.xpath(".//a[contains(@href,'/account')]");
+    private final By logoRefButton = By.xpath(".//a[contains(@href,'/')]");
+    private final By constructorRefButton = By.linkText("Конструктор");
 
     public Header(WebDriver driver) {
         super(driver);
     }
 
-    private final By accountRefButton = By.xpath(".//a[contains(@href,'/account')]");
-
-    private final By logoRefButton = By.xpath(".//a[contains(@href,'/')]");
-
-    private final By constructorRefButton = By.linkText("Конструктор");
-
     @Step("Нажимаем кнопку Личный кабинет")
-    public Header accountRefButtonClick(){
+    public Header accountRefButtonClick() {
         waitTillAnimationOverlayInvisible();
         new WebDriverWait(getDriver(), Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(accountRefButton)));
         getDriver().findElement(accountRefButton).click();
@@ -29,7 +27,7 @@ public class Header extends BasePage{
     }
 
     @Step("Нажимаем кнопку Конструктор")
-    public Header constructorRefButtonClick(){
+    public Header constructorRefButtonClick() {
         waitTillAnimationOverlayInvisible();
         new WebDriverWait(getDriver(), Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(constructorRefButton)));
         getDriver().findElement(constructorRefButton).click();
@@ -37,13 +35,12 @@ public class Header extends BasePage{
     }
 
     @Step("Нажимаем на логотип")
-    public Header logoRefButtonClick(){
+    public Header logoRefButtonClick() {
         waitTillAnimationOverlayInvisible();
         new WebDriverWait(getDriver(), Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(logoRefButton)));
         getDriver().findElement(logoRefButton).click();
         return this;
     }
-
 
 
 }

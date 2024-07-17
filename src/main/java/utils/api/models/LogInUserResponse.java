@@ -1,4 +1,4 @@
-package utils.apiModels;
+package utils.api.models;
 
 public class LogInUserResponse {
     private boolean success;

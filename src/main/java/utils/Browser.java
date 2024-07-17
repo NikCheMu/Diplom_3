@@ -6,18 +6,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class Browser {
 
 
     @Step("Read target browser from .env")
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
 
         Dotenv dotenv = null;
         dotenv = Dotenv.configure().load();
         String browser = dotenv.get("BROWSER");
-        switch (browser){
+        switch (browser) {
             case "CHROME":
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
@@ -29,5 +28,7 @@ public class Browser {
                 defaultOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage");
                 return new ChromeDriver(defaultOptions);
         }
-    };
+    }
+
+    ;
 }

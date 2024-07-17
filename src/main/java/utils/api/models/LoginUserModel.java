@@ -1,4 +1,4 @@
-package utils.apiModels;
+package utils.api.models;
 
 public class LoginUserModel {
     private String email;
